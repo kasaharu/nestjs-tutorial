@@ -19,6 +19,13 @@ export class CatsController {
   }
 
   // NOTE: 期待するリクエスト
+  //       curl -X GET http://localhost:3000/cats/help
+  @Get('/help')
+  find(): string {
+    return 'This request returns cats';
+  }
+
+  // NOTE: 期待するリクエスト
   //       curl -X POST -H "Content-Type: application/json" http://localhost:3000/cats -d '{ "name": "Dave" }'
   @Post()
   create(@Body() body) {
