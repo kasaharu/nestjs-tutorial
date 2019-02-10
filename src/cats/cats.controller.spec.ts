@@ -19,4 +19,8 @@ describe('Cats Controller', () => {
   it('call findAll() method', () => {
     expect(controller.findAll()).toBe('This action returns all cats');
   });
+
+  it('call create() method', () => {
+    expect(controller.create()).toBe('This action adds a new cat');
+  });
 });
