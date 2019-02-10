@@ -7,11 +7,12 @@ export type CatType = { name: string };
 @Controller('cats')
 export class CatsController {
   cats: CatType[];
-  constructor(private readonly catsService: CatsService) {}
+  constructor(private readonly catsService: CatsService) {
+    this.cats = this.catsService.fetchCats();
+  }
 
   @Get()
   findAll(): CatType[] {
-    this.cats = this.catsService.fetchCats();
     return this.cats;
   }
 
