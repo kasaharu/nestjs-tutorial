@@ -15,4 +15,8 @@ describe('Cats Controller', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('call findAll() method', () => {
+    expect(controller.findAll()).toBe('This action returns all cats');
+  });
 });
