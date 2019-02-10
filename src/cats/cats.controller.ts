@@ -11,11 +11,15 @@ export class CatsController {
     this.cats = this.catsService.fetchCats();
   }
 
+  // NOTE: 期待するリクエスト
+  //       curl -X GET http://localhost:3000/cats
   @Get()
   findAll(): CatType[] {
     return this.cats;
   }
 
+  // NOTE: 期待するリクエスト
+  //       curl -X POST -H "Content-Type: application/json" http://localhost:3000/cats -d '{ "name": "Dave" }'
   @Post()
   create(@Body() body) {
     this.cats.push(body);
