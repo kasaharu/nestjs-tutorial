@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 
 import { CatsService } from './cats.service';
 
-export type CatType = { name: string };
+export type CatType = { id: number; name: string };
 
 @Controller('cats')
 export class CatsController {
@@ -29,7 +29,8 @@ export class CatsController {
   //       curl -X POST -H "Content-Type: application/json" http://localhost:3000/cats -d '{ "name": "Dave" }'
   @Post()
   create(@Body() body) {
-    this.cats.push(body);
+    const newItem = { ...body, id: this.cats.length + 1 };
+    this.cats.push(newItem);
     return 'This action adds a new cat';
   }
 }
