@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 
 import { CatsService } from './cats.service';
 
@@ -16,6 +16,13 @@ export class CatsController {
   @Get()
   findAll(): CatType[] {
     return this.cats;
+  }
+
+  // NOTE: 期待するリクエスト
+  //       curl -X GET http://localhost:3000/cats/2
+  @Get(':id')
+  find(@Param('id') id): CatType {
+    return this.cats.find(cat => cat.id === +id);
   }
 
   // NOTE: 期待するリクエスト
