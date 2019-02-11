@@ -21,7 +21,7 @@ export class CatsController {
   // NOTE: 期待するリクエスト
   //       curl -X GET http://localhost:3000/cats/help
   @Get('/help')
-  find(): string {
+  help(): string {
     return 'This request returns cats';
   }
 
