@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Put, Body, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Delete,
+  Body,
+  Param,
+} from '@nestjs/common';
 
 import { CatsService } from './cats.service';
 
@@ -51,5 +59,14 @@ export class CatsController {
       }
     });
     return `This action updates a #${id} cat`;
+  }
+
+  // NOTE: 期待するリクエスト
+  //       curl -X DELETE -H "Content-Type: application/json" http://localhost:3000/cats/2
+  @Delete(':id')
+  delete(@Param('id') id) {
+    const cloneCats = this.cats;
+    this.cats = cloneCats.filter(cat => cat.id !== +id);
+    return `This action removes a #${id} cat`;
   }
 }
