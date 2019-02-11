@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Body, Param } from '@nestjs/common';
 
 import { CatsService } from './cats.service';
 
@@ -39,5 +39,17 @@ export class CatsController {
     const newItem = { ...body, id: this.cats.length + 1 };
     this.cats.push(newItem);
     return 'This action adds a new cat';
+  }
+
+  // NOTE: 期待するリクエスト
+  //       curl -X PUT -H "Content-Type: application/json" http://localhost:3000/cats/3 -d '{ "name": "Charlie" }'
+  @Put(':id')
+  update(@Param('id') id, @Body() body) {
+    this.cats.forEach(cat => {
+      if (cat.id === +id) {
+        cat.name = body.name;
+      }
+    });
+    return `This action updates a #${id} cat`;
   }
 }
